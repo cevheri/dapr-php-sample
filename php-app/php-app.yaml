@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: phpapp
+  labels:
+    app: php
+spec:
+  selector:
+    app: php
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+  type: LoadBalancer
+

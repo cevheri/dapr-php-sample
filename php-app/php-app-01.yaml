@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpapp
+  labels:
+    app: php
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php
+  template:
+    metadata:
+      labels:
+        app: php
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/id: "phpapp"
+        dapr.io/port: "8000"
+  spec:
+    containers:
+      - name: php
+        image: cevheri/dapr-php-sample
+        ports:
+          - containerPort: 8000
+            imagePullPolicy: Always
